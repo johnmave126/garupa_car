@@ -1,0 +1,8 @@
+td {
+    max-width: 600px;
+    white-space: pre-wrap;
+}
+
+tr {
+    cursor: pointer;
+}
