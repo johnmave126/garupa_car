@@ -42,7 +42,7 @@ Template.body.helpers({
         });
     },
     room_pinned() {
-        return RLocalStorage.getItem('room_pinned') || null;
+        return RLocalStorage.getItem('room_pinned');
     },
 });
 
@@ -53,9 +53,9 @@ Template.body.onRendered(function() {
     $(document.body).on('change.tplbody', '#group_day', function(e) {
         RLocalStorage.setItem('room_day', e.target.dataset.type);
     });
-    $(document.body).on('click.tplbody', 'tbody > tr:not([pinned])', e => {
-        const row = e.currentTarget;
-        const room = {
+    $(document.body).on('click.tplbody', 'tbody > tr:not([pinned])', function(e) {
+        var row = e.currentTarget;
+        var room = {
             type: row.children[0].innerHTML,
             number: row.children[1].innerHTML,
             date: row.children[2].innerHTML,
@@ -64,7 +64,7 @@ Template.body.onRendered(function() {
         };
         RLocalStorage.setItem('room_pinned', room);
     });
-    $(document.body).on('click.tplbody', 'tbody > tr[pinned="true"]', e => {
+    $(document.body).on('click.tplbody', 'tbody > tr[pinned="true"]', function(e) {
         RLocalStorage.setItem('room_pinned', null);
     });
     if(!RLocalStorage.getItem('room_type')) {
