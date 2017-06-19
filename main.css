@@ -6,3 +6,7 @@ td {
 tr {
     cursor: pointer;
 }
+
+tr[pinned="true"] {
+    background-color: #E0F8E0 !important;
+}

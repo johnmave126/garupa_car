@@ -46,6 +46,9 @@
             </tr>
         </thead>
         <tbody>
+            {{#with room_pinned}}
+                {{> room}}
+            {{/with}}
             {{#each rooms}}
                 {{> room}}
             {{/each}}
@@ -58,5 +61,10 @@
 </body>
 
 <template name="room">
-    <tr data-creator-id="{{creator_id}}"><td>{{type}}</td><td>{{number}}</td><td>{{date}}</td><td>{{body}}</td></tr>
+    <tr data-creator-id="{{creator_id}}" pinned="{{pinned}}">
+        <td>{{type}}</td>
+        <td>{{number}}</td>
+        <td>{{date}}</td>
+        <td>{{body}}</td>
+    </tr>
 </template>

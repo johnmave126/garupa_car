@@ -8,7 +8,7 @@ Tracker.autorun(function() {
         day: RLocalStorage.getItem('room_day')
     });
 });
-    
+
 
 Template.body.helpers({
     is_type(type) {
@@ -40,7 +40,10 @@ Template.body.helpers({
             var date = cdate.toString().slice(16, 24);
             return {creator_id: room.created_by_id, type: type, number: number, date: date, body: body};
         });
-    }
+    },
+    room_pinned() {
+        return RLocalStorage.getItem('room_pinned') || null;
+    },
 });
 
 Template.body.onRendered(function() {
@@ -50,9 +53,23 @@ Template.body.onRendered(function() {
     $(document.body).on('change.tplbody', '#group_day', function(e) {
         RLocalStorage.setItem('room_day', e.target.dataset.type);
     });
+    $(document.body).on('click.tplbody', 'tbody > tr:not([pinned])', e => {
+        const row = e.currentTarget;
+        const room = {
+            type: row.children[0].innerHTML,
+            number: row.children[1].innerHTML,
+            date: row.children[2].innerHTML,
+            body: row.children[3].innerHTML,
+            pinned: true,
+        };
+        RLocalStorage.setItem('room_pinned', room);
+    });
+    $(document.body).on('click.tplbody', 'tbody > tr[pinned="true"]', e => {
+        RLocalStorage.setItem('room_pinned', null);
+    });
     if(!RLocalStorage.getItem('room_type')) {
         RLocalStorage.setItem('room_type', 'all');
-    }
+    };
     if(!RLocalStorage.getItem('room_day')) {
         RLocalStorage.setItem('room_day', 'all');
     }
