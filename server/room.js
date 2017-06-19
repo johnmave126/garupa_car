@@ -1,3 +1,5 @@
+import { TwitMaker } from 'meteor/mrt:twit';
+
 Meteor.publish("rooms", function(filter) {
     var selector = {};
     switch(filter.type) {
