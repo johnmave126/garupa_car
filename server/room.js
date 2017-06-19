@@ -53,7 +53,7 @@ function make_room(tweet, text) {
         created_by_id: tweet.user.id_str,
         created_by: '@' + tweet.user.screen_name,
         created_at: tweet.created_at,
-        time: tweet.timestamp_ms,
+        time: parseInt(tweet.timestamp_ms),
         body: text,
         type: text.match('ベテ') ? '12w' : '7w',
         day_special: !!text.match('曜')
