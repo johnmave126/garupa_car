@@ -1,5 +1,8 @@
 import * as RLocalStorage from 'meteor/simply:reactive-local-storage'
+import { ReactiveVar } from 'meteor/reactive-var'
 
+
+var pinned_room = new ReactiveVar();
 //TODO: Click on a tr to focus on it(stick it to top), can block creator after sticking
 
 Tracker.autorun(function() {
@@ -32,18 +35,15 @@ Template.body.helpers({
         ];
     },
     rooms() {
-        return Rooms.find({}, {sort: {time: -1}}).map(function(room) {
-            var body = room.body.trim();
-            var number = body.match(/\d\d\d\d\d/);
-            var type = body.match('ベテ') ? '12w' : '7w';
-            var cdate = new Date(Date.parse(room.created_at));
-            var date = cdate.toString().slice(16, 24);
-            return {creator_id: room.created_by_id, type: type, number: number, date: date, body: body};
-        });
+        return Rooms.find({}, {sort: {time: -1}});
     },
-    room_pinned() {
-        return RLocalStorage.getItem('room_pinned');
+    pinned_room() {
+        return Rooms.findOne({_id: pinned_room.get()});
     },
+    pin(room) {
+        room.pinned = true;
+        return room;
+    }
 });
 
 Template.body.onRendered(function() {
@@ -55,17 +55,11 @@ Template.body.onRendered(function() {
     });
     $(document.body).on('click.tplbody', 'tbody > tr:not([pinned])', function(e) {
         var row = e.currentTarget;
-        var room = {
-            type: row.children[0].innerHTML,
-            number: row.children[1].innerHTML,
-            date: row.children[2].innerHTML,
-            body: row.children[3].innerHTML,
-            pinned: true,
-        };
-        RLocalStorage.setItem('room_pinned', room);
+        pinned_room.set(row.dataset.roomId);
+
     });
     $(document.body).on('click.tplbody', 'tbody > tr[pinned="true"]', function(e) {
-        RLocalStorage.setItem('room_pinned', null);
+        pinned_room.set(null);
     });
     if(!RLocalStorage.getItem('room_type')) {
         RLocalStorage.setItem('room_type', 'all');
@@ -75,6 +69,6 @@ Template.body.onRendered(function() {
     }
 });
 
-Template.body.onCreated(function() {
+Template.body.onDestroyed(function() {
     $(document.body).off('.tplbody');
 });
