@@ -38,7 +38,7 @@ Template.body.helpers({
         return Rooms.find({}, {sort: {time: -1}});
     },
     pinned_room() {
-        return Rooms.findOne({_id: pinned_room.get()});
+        return pinned_room.get();
     },
     pin(room) {
         room.pinned = true;
@@ -55,7 +55,7 @@ Template.body.onRendered(function() {
     });
     $(document.body).on('click.tplbody', 'tbody > tr:not([pinned])', function(e) {
         var row = e.currentTarget;
-        pinned_room.set(row.dataset.roomId);
+        pinned_room.set(Rooms.findOne({_id: row.dataset.roomId}));
 
     });
     $(document.body).on('click.tplbody', 'tbody > tr[pinned="true"]', function(e) {
