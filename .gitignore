@@ -2,3 +2,4 @@ node_modules/
 .deploy/
 settings.json
 .editor-settings
+sftp-config.json
