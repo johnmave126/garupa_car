@@ -39,6 +39,7 @@
     <table class="table table-striped table-hover">
         <thead>
             <tr>
+                <th>评价</th>
                 <th>类型</th>
                 <th>房号</th>
                 <th>时间</th>
@@ -62,6 +63,17 @@
 
 <template name="room">
     <tr data-room-id="{{_id}}" pinned="{{pinned}}">
+        <td class="rating-td">
+            <div class="rating-container">
+                {{#if pinned}}
+                <span class="glyphicon glyphicon-menu-up rating-item rating-button {{#if (rated 1)}}rating-rated{{/if}}" data-action="1"></span>
+                {{/if}}
+                <span class="glyphicon {{rating_icon}} rating-item" title="{{rating_stats}}"></span>
+                {{#if pinned}}
+                <span class="glyphicon glyphicon-menu-down rating-item rating-button {{#if (rated -1)}}rating-rated{{/if}}" data-action="-1"></span>
+                {{/if}}
+            </div>
+        </td>
         <td>{{type}}</td>
         <td>{{number}}</td>
         <td>{{date}}</td>

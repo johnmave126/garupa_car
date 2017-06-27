@@ -22,3 +22,4 @@ percolate:synced-cron
 mizzao:user-status
 dynamic-import
 simply:reactive-local-storage
+frozeman:persistent-minimongo2

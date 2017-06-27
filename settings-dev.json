@@ -3,5 +3,8 @@
     "consumer_key": "Put your key here",
     "consumer_secret": "Put your secret here",
     "access_token": "Put your token here",
-    "access_token_secret": "Put your token secret here"
+    "access_token_secret": "Put your token secret here",
+    "public": {
+        "publish_size": "number of published tweets to client"
+    }
 }

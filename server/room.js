@@ -20,7 +20,7 @@ Meteor.publish("rooms", function(filter) {
         default:
             break;
     }
-    return Rooms.find(selector, {sort: {time: -1}, limit: 50});
+    return Rooms.find(selector, {sort: {time: -1}, limit: Meteor.settings.public.publish_size});
 });
 
 function mutate(tweet) {

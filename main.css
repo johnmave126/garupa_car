@@ -10,3 +10,40 @@ tr {
 tr[pinned="true"] {
     background-color: #E0F8E0 !important;
 }
+
+td.rating-td {
+    display: flex;
+}
+
+.rating-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.rating-item {
+    font-size: large;
+}
+
+.rating-button {
+    color: lightgray;
+}
+
+.rating-rated {
+    color: black !important;
+}
+
+.rating-button:hover {
+    color: gray;
+}
+
+.rating-item.glyphicon-thumbs-up {
+    color: #009628;
+}
+
+.rating-item.glyphicon-thumbs-down {
+    color: #960000;
+}
+
+.rating-item.glyphicon-sort {
+    color: #ffc107;
+}
