@@ -76,7 +76,7 @@ Template.body.helpers({
         var vote = Votes.findOne({room_id: room._id});
         room.pinned = true;
         if(vote) {
-            room.rating = vote.rating;
+            room.rating = new ReactiveVar(vote.rating);
         }
         return room;
     }
@@ -108,7 +108,7 @@ Template.room.helpers({
                 + rating.down + " negative vote" + (rating.down > 1 ? "s" : "");
     },
     rated(rating) {
-        return this.rating === rating;
+        return this.rating.get() === rating;
     }
 });
 
@@ -144,7 +144,7 @@ Template.room.events({
             new_rating = parseInt(btn.dataset.action);
         e.preventDefault();
         e.stopPropagation();
-        if(this.rating !== new_rating) {
+        if(this.rating.get() !== new_rating) {
             if(Votes.findOne({room_id: this._id})) {
                 Votes.update({room_id: this._id}, {$set: {rating: new_rating}});
             }
@@ -161,9 +161,7 @@ Template.room.events({
                     modReputation(this.created_by_id, this.rating, new_rating);
                 }
             }
-            this.rating = new_rating;
-            pinned_room.set(Object.assign({}, this));
-
+            this.rating.set(new_rating);
         }
     }
 });
