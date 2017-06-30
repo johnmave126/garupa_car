@@ -158,7 +158,7 @@ Template.room.events({
                     });
                 }
                 else {
-                    modReputation(this.created_by_id, this.rating, new_rating);
+                    modReputation(this.created_by_id, this.rating.get(), new_rating);
                 }
             }
             this.rating.set(new_rating);
