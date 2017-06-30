@@ -78,6 +78,9 @@ Template.body.helpers({
         if(vote) {
             room.rating = new ReactiveVar(vote.rating);
         }
+        else {
+            room.rating = new ReactiveVar();
+        }
         return room;
     }
 });
