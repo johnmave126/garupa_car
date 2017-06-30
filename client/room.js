@@ -162,6 +162,8 @@ Template.room.events({
                 }
             }
             this.rating = new_rating;
+            pinned_room.set(Object.assign({}, this));
+
         }
     }
 });
