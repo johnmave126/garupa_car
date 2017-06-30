@@ -28,16 +28,16 @@ function collectRating(room) {
 function modReputation(creator_id, old_rating, new_rating) {
     var modifier = {};
     if(old_rating === -1) {
-        modifer['$inc'] = {down: -1};
+        modifier['$inc'] = {down: -1};
     }
     else if(old_rating === 1) {
-        modifer['$inc'] = {up: -1};
+        modifier['$inc'] = {up: -1};
     }
     if(new_rating === -1) {
-        modifer['$inc'] = {down: 1};
+        modifier['$inc'] = {down: 1};
     }
     else if(new_rating === 1) {
-        modifer['$inc'] = {up: 1};
+        modifier['$inc'] = {up: 1};
     }
     if(!Reputation.findOne({creator_id: creator_id})) {
         Reputation.insert({creator_id: creator_id, up: 0, down: 0});
