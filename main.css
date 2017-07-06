@@ -1,3 +1,11 @@
+html {
+    overflow-y: hidden;
+}
+
+* {
+    transition: background-color 0.5s ease;
+}
+
 td {
     max-width: 600px;
     white-space: pre-wrap;
@@ -47,3 +55,37 @@ td.rating-td {
 .rating-item.glyphicon-sort {
     color: #ffc107;
 }
+
+.github-fork-container {
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 15px;
+    box-sizing: border-box;
+    width: 14em;
+    height: 14em;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(45deg) translateY(-32%);
+}
+
+.github-fork {
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding: 5px 0;
+    background: hsl(232, 60%, 40%);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.github-fork, .github-fork:hover, .github-forl:visited, .github-fork:active, .github-fork:focus {
+    color: white;
+    font-weight: bolder;
+    text-decoration: none;
+}
+
+.github-fork:hover {
+    background: hsl(232, 50%, 50%);
+}
+
