@@ -52,6 +52,7 @@ function mutate(tweet) {
 
 function make_room(tweet, text) {
     return {
+        tweet_id: tweet.id_str,
         created_by_id: tweet.user.id_str,
         created_by: '@' + tweet.user.screen_name,
         created_at: tweet.created_at,

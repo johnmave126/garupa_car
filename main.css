@@ -64,6 +64,10 @@ td.rating-td {
     color: #ffc107;
 }
 
+a.origin-link:hover {
+    text-decoration: none;
+}
+
 .github-fork-container {
     display: flex;
     position: absolute;
