@@ -124,9 +124,17 @@ Template.body.onRendered(function() {
     });
     $(document.body).on('click.tplbody', 'tbody > tr:not([pinned])', function(e) {
         var row = e.currentTarget;
+        if(e.target.tagName === 'A') {
+            e.stopPropagation();
+            return;
+        }
         pinned_room.set(Rooms.findOne({_id: row.dataset.roomId}));
     });
     $(document.body).on('click.tplbody', 'tbody > tr[pinned="true"]', function(e) {
+        if(e.target.tagName === 'A') {
+            e.stopPropagation();
+            return;
+        }
         pinned_room.set(null);
     });
     if(!RLocalStorage.getItem('room_type')) {
