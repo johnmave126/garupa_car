@@ -5,6 +5,7 @@ Meteor.publish("rooms", function(filter) {
     switch(filter.type) {
         case '7w':
         case '12w':
+        case '18w':
             selector.type = filter.type;
             break;
         case 'all':
@@ -58,7 +59,7 @@ function make_room(tweet, text) {
         created_at: tweet.created_at,
         time: parseInt(tweet.timestamp_ms),
         body: text,
-        type: text.match('ベテ') ? '12w' : '7w',
+        type: text.match('ベテ') ? '12w' : (text.match('マスター') ? '18w' : '7w'),
         day_special: !!text.match('曜')
     };
 

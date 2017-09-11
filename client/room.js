@@ -53,6 +53,7 @@ Template.body.helpers({
         return [
             {type: '7w', text: '7W房'},
             {type: '12w', text: '12W房'},
+            {type: '18w', text: '18W房'},
             {type: 'all', text: '所有房'}
         ];
     },
