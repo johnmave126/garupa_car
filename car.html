@@ -8,58 +8,62 @@
 </head>
 
 <body>
-    <div class="expand">
-        <div class="container">
-            <h3>车站</h3>
-            <div class="btn-group" id="group_type" data-toggle="buttons">
-                {{#each room_type in room_types}}
-                    {{#if is_type room_type.type}}
-                        <label class="btn btn-primary active">
-                            <input type="radio" data-type="{{room_type.type}}" checked autocomplete="off">{{room_type.text}}
-                        </label>
-                    {{else}}
-                        <label class="btn btn-primary">
-                            <input type="radio" data-type="{{room_type.type}}" autocomplete="off">{{room_type.text}}
-                        </label>
-                    {{/if}}
-                {{/each}}
+    <div class="frame">
+        <div class="expand">
+            <div class="github-fork-overflow-container">
+                <div class="github-fork-container">
+                    <a class="github-fork" target="_blank" href="https://github.com/johnmave126/garupa_car">Fork on Github</a>
+                </div>
             </div>
-            <div class="btn-group" id="group_day" data-toggle="buttons">
-                {{#each room_day in room_days}}
-                    {{#if is_day room_day.day}}
-                        <label class="btn btn-primary active">
-                            <input type="radio" data-type="{{room_day.day}}" checked autocomplete="off">{{room_day.text}}
-                        </label>
-                    {{else}}
-                        <label class="btn btn-primary">
-                            <input type="radio" data-type="{{room_day.day}}" autocomplete="off">{{room_day.text}}
-                        </label>
-                    {{/if}}
-                {{/each}}
-            </div>
-
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>评价</th>
-                        <th>类型</th>
-                        <th>房号</th>
-                        <th>司机</th>
-                        <th>时间</th>
-                        <th>详细内容</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#with pinned_room}}
-                        {{> room (pin this)}}
-                    {{/with}}
-                    {{#each rooms}}
-                        {{> room}}
+            <div class="container">
+                <h3>车站</h3>
+                <div class="btn-group" id="group_type" data-toggle="buttons">
+                    {{#each room_type in room_types}}
+                        {{#if is_type room_type.type}}
+                            <label class="btn btn-primary active">
+                                <input type="radio" data-type="{{room_type.type}}" checked autocomplete="off">{{room_type.text}}
+                            </label>
+                        {{else}}
+                            <label class="btn btn-primary">
+                                <input type="radio" data-type="{{room_type.type}}" autocomplete="off">{{room_type.text}}
+                            </label>
+                        {{/if}}
                     {{/each}}
-                </tbody>
-            </table>
-            <div class="github-fork-container">
-                <a class="github-fork" target="_blank" href="https://github.com/johnmave126/garupa_car">Fork on Github</a>
+                </div>
+                <div class="btn-group" id="group_day" data-toggle="buttons">
+                    {{#each room_day in room_days}}
+                        {{#if is_day room_day.day}}
+                            <label class="btn btn-primary active">
+                                <input type="radio" data-type="{{room_day.day}}" checked autocomplete="off">{{room_day.text}}
+                            </label>
+                        {{else}}
+                            <label class="btn btn-primary">
+                                <input type="radio" data-type="{{room_day.day}}" autocomplete="off">{{room_day.text}}
+                            </label>
+                        {{/if}}
+                    {{/each}}
+                </div>
+
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>评价</th>
+                            <th>类型</th>
+                            <th>房号</th>
+                            <th>司机</th>
+                            <th>时间</th>
+                            <th>详细内容</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#with pinned_room}}
+                            {{> room (pin this)}}
+                        {{/with}}
+                        {{#each rooms}}
+                            {{> room}}
+                        {{/each}}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

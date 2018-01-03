@@ -1,17 +1,36 @@
-html, body, .expand {
-    overflow-x: hidden;
+html, body, .frame {
+    overflow: hidden;
 }
 
-.expand {
+.frame {
     position: fixed;
     width: 100%;
     height: 100%;
-    overflow-y: scroll;
+    overflow: auto;
     -webkit-overflow-scrolling: touch;
+}
+
+.expand {
+    min-width: 100%;
+    display: inline-block;
+    position: relative;
+}
+
+.github-fork-overflow-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    overflow: hidden;
 }
 
 * {
     transition: background-color 0.5s ease;
+}
+
+.table {
+    min-width: 600px;
 }
 
 td {
